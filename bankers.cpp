@@ -114,6 +114,9 @@ bool safeState(int processes[], int available_resources[], int max_required[][nu
     while (index < numProcesses) {
 
         bool found = false;
+
+        //  A nested for loop to determine if work (available) is less less than or equal to need
+
         for (int p = 0; p < numProcesses; p++) {
 
             if (finish[p] == 0) {
@@ -127,6 +130,7 @@ bool safeState(int processes[], int available_resources[], int max_required[][nu
 
                 if (j == numResources) {
 
+                   // If the process is less than equal to work the following loop is ran to update work.
                     for (int k = 0 ; k < numResources ; k++) {
 
                         currently_available[k] += allocation[p][k];
@@ -137,6 +141,7 @@ bool safeState(int processes[], int available_resources[], int max_required[][nu
                     ++index;
                     finish[p] = 1;
 
+                    // The process id is stored within the safe_sequence array, and the process is marked assigned true
                     found = true;
 
                 }
